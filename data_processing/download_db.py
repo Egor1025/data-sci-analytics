@@ -1,6 +1,7 @@
 import requests
 
 def download_from_github(share_url, output_path):
+    share_url = share_url.replace('github.com', 'raw.githubusercontent.com').replace('blob/', '')
     r = requests.get(share_url)
     with open(output_path, 'wb') as f:
         f.write(r.content)

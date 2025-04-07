@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  app:
+    build: ../server-files
+    container_name: programs_app
+    volumes:
+      - .:/app
+    command: python save_programs_info.py

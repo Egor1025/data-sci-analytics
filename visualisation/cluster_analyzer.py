@@ -18,7 +18,9 @@ class ClusterAnalyzer(BasePlotConfig):
         title = f'Кластеризация методом {self.method.__name__}'
         fig, ax = BasePlotConfig._get_transparent_fig(8, 6)
         self._set_scatter_signs(ax, title, self.x_label, self.y_label)
-        ax.scatter(self.X[:, 0], self.X[:, 1], c=self.clusters, cmap='viridis', alpha=0.7, edgecolor='black')
+        mask = self.clusters != -1
+        X_filtered = self.X[mask]
+        ax.scatter(X_filtered[:, 0], X_filtered[:, 1], c=self.clusters[mask], cmap='viridis', alpha=0.7, edgecolor='black')
         return fig
 
     def _cluster_data(self, method, params=None):

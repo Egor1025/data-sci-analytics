@@ -39,10 +39,10 @@ class GraphBuilder(BasePlotConfig):
 
     def price_to_points_scatter(self):
         title = 'Зависимость стоимости и проходного балла лучших вузов\n'
-        fig, ax = BasePlotConfig._get_transparent_fig(9, 6)
+        fig, ax = BasePlotConfig._get_transparent_fig(9, 9)
         self._set_scatter_signs(ax, title, 'Стоимость, тыс. руб', BUDGET_PTS)
 
-        df = self.df[self.df['Место в топе'] < 13]
+        df = self.df[self.df['Место в топе'] < 12]
         grouped = df.groupby('Университет').agg({PRICE: 'mean', BUDGET_PTS: 'mean'})
 
         ax.scatter(grouped[PRICE], grouped[BUDGET_PTS], color=self.MAIN_COLOR, s=70)
